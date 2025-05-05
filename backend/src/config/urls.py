@@ -22,19 +22,14 @@ Including another URLconf
 #     path('admin/', admin.site.urls),
 # ]
 
+from api.views import user as user_views
 from django.urls import include, path
 from rest_framework import routers
-
-from users import views
-
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = routers.DefaultRouter()
-router.register(r"users", views.UserViewSet)
-router.register(r"groups", views.GroupViewSet)
+router.register(r"users", user_views.UserViewSet)
+router.register(r"groups", user_views.GroupViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

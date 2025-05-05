@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 # 1. Define la ruta al .env en la raíz del proyecto
@@ -32,6 +33,8 @@ SECRET_KEY = "django-insecure-%vr4um_=!3w@3!oirg&#(tdnp$$#f!&xi8p&+!snv=^370v*3w
 # DEBUG = True
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
+AUTH_USER_MODEL = "api.User"
+
 
 ALLOWED_HOSTS = []
 
@@ -39,13 +42,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
+    # "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "api",
 ]
 
 
