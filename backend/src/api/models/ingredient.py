@@ -12,18 +12,11 @@ class Ingredient(TimeStampedModel):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, blank=False, null=False)
-    quantity = models.CharField(max_length=255, blank=True, null=True)
     unit = models.ForeignKey(
         "Unit",
         on_delete=models.CASCADE,
         related_name="ingredients",
         verbose_name=_("unit"),
-    )
-    recipe = models.ForeignKey(
-        "Recipe",
-        on_delete=models.CASCADE,
-        related_name="ingredients",
-        verbose_name=_("recipe"),
     )
 
     class Meta:
