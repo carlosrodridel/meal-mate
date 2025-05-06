@@ -18,6 +18,14 @@ class Ingredient(TimeStampedModel):
         related_name="ingredients",
         verbose_name=_("unit"),
     )
+    created_by = models.ForeignKey(
+        "User",
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        related_name="created_ingredients",
+        verbose_name=_("created by"),
+    )
 
     class Meta:
         verbose_name = _("ingredient")
