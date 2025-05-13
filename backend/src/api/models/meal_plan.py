@@ -11,6 +11,7 @@ class MealPlan(TimeStampedModel):
     Model representing a meal plan.
     """
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(_("name"), max_length=255, blank=False, null=False)
     description = models.TextField(_("description"), blank=True, null=True)
     created_at = models.DateTimeField(_("created at"), auto_now_add=True)
@@ -22,7 +23,7 @@ class MealPlan(TimeStampedModel):
         verbose_name=_("created by"),
     )
     participants = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, through="UserMealPlan", related_name="mealplans"
+        settings.AUTH_USER_MODEL, through="MealPlanGroup", related_name="mealplans"
     )
 
     class Meta:
@@ -30,7 +31,7 @@ class MealPlan(TimeStampedModel):
         verbose_name_plural = _("meal plans")
 
 
-class UserMealPlan(models.Model):
+class MealPlanGroup(models.Model):
     ROLE_CHOICES = [
         ("owner", "Owner"),
         ("editor", "Editor"),
@@ -39,7 +40,6 @@ class UserMealPlan(models.Model):
     """
     Model representing a user in a meal plan.
     """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,

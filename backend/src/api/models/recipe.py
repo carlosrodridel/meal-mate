@@ -17,6 +17,8 @@ class Recipe(TimeStampedModel):
     created_by = models.ForeignKey(
         "User",
         on_delete=models.CASCADE,
+        blank=True,
+        null=True,
         related_name="recipes",
         verbose_name=_("created by"),
     )
