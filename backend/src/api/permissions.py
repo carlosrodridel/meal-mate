@@ -20,3 +20,19 @@ class IsAdminOrSelf(permissions.BasePermission):
         if view.action == "destroy":
             return request.user.is_staff
         return False
+
+
+class IsCreatorOrReadOnly(permissions.BasePermission):
+    """
+    Allow safe methods for everyone, but DELETE/PUT/PATCH only
+    if obj.created_by == request.user.
+    Also block DELETE on global ingredients (created_by is None).
+    """
+
+    def has_object_permission(self, request, view, obj):
+        # Always allow GET, HEAD, OPTIONS
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        # For write operations, ensure the ingredient was created by this user
+        return obj.created_by == request.user

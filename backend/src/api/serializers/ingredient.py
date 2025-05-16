@@ -7,7 +7,9 @@ class IngredientSerializer(serializers.ModelSerializer):
     Serializer for the Ingredient model.
     """
 
+    created_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Ingredient
-        fields = "__all__"
-        read_only_fields = ["id", "name", "unit", "created_by"]
+        fields = ["id", "name", "unit", "created_by"]
+        read_only_fields = ["id"]
