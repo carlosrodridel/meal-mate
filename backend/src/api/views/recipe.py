@@ -1,4 +1,5 @@
 from api.models.recipe import Recipe
+from api.permissions import IsCreatorOrReadOnly
 from api.serializers.recipe import RecipeSerializer
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
@@ -10,7 +11,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
     """
 
     serializer_class = RecipeSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsCreatorOrReadOnly]
 
     def get_queryset(self):
         """
