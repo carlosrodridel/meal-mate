@@ -1,5 +1,6 @@
 import uuid
 
+from api.models.ingredient import Ingredient
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from model_utils.models import TimeStampedModel
@@ -21,6 +22,9 @@ class Recipe(TimeStampedModel):
         null=True,
         related_name="recipes",
         verbose_name=_("created by"),
+    )
+    ingredients = models.ManyToManyField(
+        Ingredient, through="RecipeIngredient", related_name="recipes"
     )
 
     class Meta:
