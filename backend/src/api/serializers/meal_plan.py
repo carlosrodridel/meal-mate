@@ -37,4 +37,4 @@ class MealPlanEntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = MealPlanEntry
         fields = "__all__"
-        read_only_fields = ["id", "mealplan", "date_time", "recipe"]
+        read_only_fields = ["id"]

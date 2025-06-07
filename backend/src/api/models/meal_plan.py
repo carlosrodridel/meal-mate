@@ -1,5 +1,6 @@
 import uuid
 
+from api.models.recipe import Recipe
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -27,6 +28,9 @@ class MealPlan(TimeStampedModel):
     class Meta:
         verbose_name = _("meal plan")
         verbose_name_plural = _("meal plans")
+
+    def __str__(self):
+        return self.name
 
 
 class MealPlanGroup(models.Model):
@@ -67,7 +71,7 @@ class MealPlanEntry(models.Model):
         MealPlan, on_delete=models.CASCADE, related_name="entries"
     )
     recipe = models.ForeignKey(
-        "Recipe", on_delete=models.CASCADE, related_name="meal_plan_entries"
+        Recipe, on_delete=models.CASCADE, related_name="meal_plan_entries"
     )
     date_time = models.DateTimeField(_("date and time"), blank=False, null=False)
 

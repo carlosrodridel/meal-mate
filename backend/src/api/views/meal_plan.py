@@ -40,4 +40,4 @@ class MealPlanEntryViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return MealPlanEntry.objects.filter(mealplan__created_by=self.request.user)
+        return MealPlanEntry.objects.filter(meal_plan__created_by=self.request.user)

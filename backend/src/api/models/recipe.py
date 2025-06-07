@@ -30,3 +30,6 @@ class Recipe(TimeStampedModel):
     class Meta:
         verbose_name = _("recipe")
         verbose_name_plural = _("recipes")
+
+    def __str__(self):
+        return self.name
