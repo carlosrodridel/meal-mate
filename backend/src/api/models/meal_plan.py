@@ -14,8 +14,6 @@ class MealPlan(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(_("name"), max_length=255, blank=False, null=False)
     description = models.TextField(_("description"), blank=True, null=True)
-    created_at = models.DateTimeField(_("created at"), auto_now_add=True)
-    updated_at = models.DateTimeField(_("updated at"), auto_now=True)
     created_by = models.ForeignKey(
         "User",
         on_delete=models.CASCADE,

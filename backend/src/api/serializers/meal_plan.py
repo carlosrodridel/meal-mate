@@ -7,6 +7,11 @@ class MealPlanSerializer(serializers.ModelSerializer):
     Serializer for the Ingredient model.
     """
 
+    created_by = serializers.HiddenField(
+        default=serializers.CurrentUserDefault(),
+        help_text="The user who created the meal plan.",
+    )
+
     class Meta:
         model = MealPlan
         fields = "__all__"

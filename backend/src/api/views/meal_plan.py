@@ -1,7 +1,6 @@
 from api.models.meal_plan import MealPlan, MealPlanEntry, MealPlanGroup
-from api.serializers.meal_plan import (
+from api.serializers.meal_plan import (  # MealPlanGroupSerializer,
     MealPlanEntrySerializer,
-    MealPlanGroupSerializer,
     MealPlanSerializer,
 )
 from rest_framework import viewsets
@@ -20,16 +19,16 @@ class MealPlanViewSet(viewsets.ModelViewSet):
         return MealPlan.objects.filter(created_by=self.request.user)
 
 
-class MealPlanGroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows units to be viewed.
-    """
+# class MealPlanGroupViewSet(viewsets.ModelViewSet):
+#     """
+#     API endpoint that allows units to be viewed.
+#     """
 
-    serializer_class = MealPlanGroupSerializer
-    permission_classes = [IsAuthenticated]
+#     serializer_class = MealPlanGroupSerializer
+#     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        return MealPlanGroup.objects.filter(user=self.request.user)
+#     def get_queryset(self):
+#         return MealPlanGroup.objects.filter(user=self.request.user)
 
 
 class MealPlanEntryViewSet(viewsets.ModelViewSet):

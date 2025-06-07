@@ -41,11 +41,11 @@ router.register(
 )
 router.register(r"units", unit_views.UnitViewSet, basename="unit")
 router.register(r"meal-plans", meal_plan_views.MealPlanViewSet, basename="meal-plan")
-router.register(
-    r"meal-plan-groups",
-    meal_plan_views.MealPlanGroupViewSet,
-    basename="meal-plan-group",
-)
+# router.register(
+#     r"meal-plan-groups",
+#     meal_plan_views.MealPlanGroupViewSet,
+#     basename="meal-plan-group",
+# )
 router.register(
     r"meal-plan-entries",
     meal_plan_views.MealPlanEntryViewSet,
