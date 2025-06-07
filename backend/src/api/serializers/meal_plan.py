@@ -10,7 +10,7 @@ class MealPlanSerializer(serializers.ModelSerializer):
     class Meta:
         model = MealPlan
         fields = "__all__"
-        read_only_fields = ["id", "name", "description", "created_by", "participants"]
+        read_only_fields = ["id", "created_by", "participants"]
 
 
 class MealPlanGroupSerializer(serializers.ModelSerializer):

@@ -11,16 +11,17 @@ class RecipeIngredient(TimeStampedModel):
     Model representing the relationship between a recipe and its ingredients.
     """
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name="recipe_ingredients",
+        related_name="ingredient_lines",
         verbose_name="recipe",
     )
     ingredient = models.ForeignKey(
         Ingredient,
         on_delete=models.CASCADE,
-        related_name="recipe_ingredients",
+        related_name="used_in_recipes",
         verbose_name="ingredient",
     )
     quantity = models.DecimalField(max_digits=10, decimal_places=2)

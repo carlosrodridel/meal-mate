@@ -17,7 +17,6 @@ class MealPlanViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # TODO: add participant filtering
         return MealPlan.objects.filter(created_by=self.request.user)
 
 
